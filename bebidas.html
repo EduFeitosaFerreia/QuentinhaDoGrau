@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/bebidas.css">
+    <title>aula02</title>
+    <body>
+        <h1>Bebidas</h1>
+        <div class="gallery">
+            <div>
+                <img src="imagens/imagens/fanta laranja.jpg" alt="fanta laranja">
+                <div class="caption">Fanta Laranja lata</div>
+                <div class="price" data-price="6.00">R$ 6,00</div>
+                <button class="add-to-cart" data-item="feijoada">Adicionar ao Carrinho</button>
+                <span class="counter" id="feijoada-count">0</span>
+            </div>
+            <div>
+                <img src="imagens/imagens/sprit.jpg" alt="sprit">
+                <div class="caption">Sprit Lata</div>
+                <div class="price" data-price="5.00">R$ 5,00</div>
+                <button class="add-to-cart" data-item="parmegiana">Adicionar ao Carrinho</button>
+                <span class="counter" id="parmegiana-count">0</span>
+            </div>
+            <div>
+                <img src="imagens/imagens/cockteis.jpg" alt="cockteis">
+                <div class="caption">Drinks Alcólicos</div>
+                <div class="price" data-price="10.00">R$ 10,00</div>
+                <button class="add-to-cart" data-item="estrogonofe">Adicionar ao Carrinho</button>
+                <span class="counter" id="estrogonofe-count">0</span>
+            </div>
+            <div>
+                <img src="imagens/imagens/guarana.jpg" alt="guarana">
+                <div class="caption">Guarana Lata</div>
+                <div class="price" data-price="8.00">R$ 8,00</div>
+                <button class="add-to-cart" data-item="moda_da_casa">Adicionar ao Carrinho</button>
+                <span class="counter" id="moda_da_casa-count">0</span>
+            </div>
+            <div>
+                <img src="imagens/imagens/sucos de poupas.jpg" alt="Suco poupa">
+                <div class="caption">Suco de poupa jarra</div>
+                <div class="price" data-price="15.00">R$ 15,00</div>
+                <button class="add-to-cart" data-item="especial_guanabara">Adicionar ao Carrinho</button>
+                <span class="counter" id="especial_guanabara-count">0</span>
+            </div>
+            <div>
+                <img src="imagens/imagens/fanta uva lata.jpg" alt="Fanta Uva">
+                <div class="caption">Fanta Uva lata</div>
+                <div class="price" data-price="8.00">R$ 3,00</div>
+                <button class="add-to-cart" data-item="almoco_vegano">Adicionar ao Carrinho</button>
+                <span class="counter" id="almoco_vegano-count">0</span>
+            </div>
+        </div>
+    
+        <div class="total">
+            Total: R$ <span id="total-amount">0.00</span>
+        </div>
+    
+        <section>
+            <nav>
+                <ul class="button-container">
+                    <li><a href="cafe.html" class="button">Café da Manhã</a></li>
+                    <li><a href="almoco.html" class="button">Almoço</a></li>
+                    <li><a href="janta.html" class="button">Janta</a></li>
+                    <li><a href="bebidas.html" class="button">Bebidas</a></li>
+                    <li><a href="maissobre.html" class="button">Mais Sobre o Restaurante</a></li>
+                    <li><a href="home.html" class="button">Home</a></li>
+                    
+                </ul>
+            </nav>
+        </section>
+    
+        <script>
+            let totalAmount = 0;
+    
+            const updateCounterAndTotal = (item, price) => {
+                const counterElement = document.getElementById(`${item}-count`);
+                let count = parseInt(counterElement.innerText);
+                count++;
+                counterElement.innerText = count;
+    
+                totalAmount += price;
+                document.getElementById("total-amount").innerText = totalAmount.toFixed(2);
+            };
+    
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', () => {
+                    const item = button.getAttribute('data-item');
+                    const price = parseFloat(button.previousElementSibling.getAttribute('data-price'));
+                    updateCounterAndTotal(item, price);
+                });
+            });
+        </script>
+    </body>
+    
+    </html>

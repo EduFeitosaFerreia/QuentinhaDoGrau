@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/almoco.css">
+    <title>Pratos do Almoço</title>
+</head>
+
+<body>
+    <h1>Pratos do Almoço</h1>
+    <div class="gallery">
+        <div>
+            <img src="imagens/imagens/feijoada.jpg" alt="feijoada">
+            <div class="caption">Feijoada</div>
+            <div class="price" data-price="42.00">R$ 42,00</div>
+            <button class="add-to-cart" data-item="feijoada">Adicionar ao Carrinho</button>
+            <span class="counter" id="feijoada-count">0</span>
+        </div>
+        <div>
+            <img src="imagens/imagens/parmegiana.jpg" alt="parmegiana">
+            <div class="caption">Parmegiana</div>
+            <div class="price" data-price="35.00">R$ 35,00</div>
+            <button class="add-to-cart" data-item="parmegiana">Adicionar ao Carrinho</button>
+            <span class="counter" id="parmegiana-count">0</span>
+        </div>
+        <div>
+            <img src="imagens/imagens/estrogonofe.jpg" alt="Estrogonofe">
+            <div class="caption">Estrogonofe</div>
+            <div class="price" data-price="38.00">R$ 38,00</div>
+            <button class="add-to-cart" data-item="estrogonofe">Adicionar ao Carrinho</button>
+            <span class="counter" id="estrogonofe-count">0</span>
+        </div>
+        <div>
+            <img src="imagens/imagens/czczv.jpg" alt="A moda da casa">
+            <div class="caption">A moda da casa</div>
+            <div class="price" data-price="42.00">R$ 42,00</div>
+            <button class="add-to-cart" data-item="moda_da_casa">Adicionar ao Carrinho</button>
+            <span class="counter" id="moda_da_casa-count">0</span>
+        </div>
+        <div>
+            <img src="imagens/imagens/das.jpg" alt="Especial de guanabara">
+            <div class="caption">Especial de Guanabara</div>
+            <div class="price" data-price="35.00">R$ 35,00</div>
+            <button class="add-to-cart" data-item="especial_guanabara">Adicionar ao Carrinho</button>
+            <span class="counter" id="especial_guanabara-count">0</span>
+        </div>
+        <div>
+            <img src="imagens/imagens/download.jpg" alt="Almoço vegano">
+            <div class="caption">Almoço Vegano</div>
+            <div class="price" data-price="38.00">R$ 38,00</div>
+            <button class="add-to-cart" data-item="almoco_vegano">Adicionar ao Carrinho</button>
+            <span class="counter" id="almoco_vegano-count">0</span>
+        </div>
+    </div>
+
+    <div class="total">
+        Total: R$ <span id="total-amount">0.00</span>
+    </div>
+
+    <section>
+        <nav>
+            <ul class="button-container">
+                <li><a href="cafe.html" class="button">Café da Manhã</a></li>
+                <li><a href="almoco.html" class="button">Almoço</a></li>
+                <li><a href="janta.html" class="button">Janta</a></li>
+                <li><a href="bebidas.html" class="button">bebidas</a></li>
+                <li><a href="maissobre.html" class="button">Mais Sobre o Restaurante</a></li>
+                <li><a href="home.html" class="button">Home</a></li>
+            </ul>
+        </nav>
+    </section>
+
+    <script>
+        let totalAmount = 0;
+
+        const updateCounterAndTotal = (item, price) => {
+            const counterElement = document.getElementById(`${item}-count`);
+            let count = parseInt(counterElement.innerText);
+            count++;
+            counterElement.innerText = count;
+
+            totalAmount += price;
+            document.getElementById("total-amount").innerText = totalAmount.toFixed(2);
+        };
+
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = button.getAttribute('data-item');
+                const price = parseFloat(button.previousElementSibling.getAttribute('data-price'));
+                updateCounterAndTotal(item, price);
+            });
+        });
+    </script>
+</body>
+
+</html>
